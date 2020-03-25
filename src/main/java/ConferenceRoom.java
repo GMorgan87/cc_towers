@@ -1,37 +1,33 @@
 import java.util.ArrayList;
 
-public class Bedroom {
-
-    private int roomNumber;
+public class ConferenceRoom {
+    private String name;
     private int capacity;
-    private String type;
     private ArrayList<Guest> guests;
 
-    public Bedroom(int roomNumber, int capacity, String type) {
-        this.roomNumber = roomNumber;
+    public ConferenceRoom(String name, int capacity) {
+        this.name = name;
         this.capacity = capacity;
-        this.type = type;
         this.guests = new ArrayList<Guest>();
     }
 
-    public int countGuests() {
+    public int countGuests(){
         return this.guests.size();
     }
 
-    public int getRoomNumber(){
-        return this.roomNumber;
+    public String getName() {
+        return this.name;
     }
 
-    public int getCapacity(){
+    public int getCapacity() {
         return this.capacity;
     }
 
-    public String getType(){
-        return this.type;
-    }
-
     public void addGuest(Guest guest) {
-        this.guests.add(guest);
+        if(this.capacity > this.countGuests()){
+            this.guests.add(guest);
+        }
+
     }
 
     public Guest removeGuest(Guest guest) {
