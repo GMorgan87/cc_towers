@@ -4,6 +4,7 @@ public class Bedroom {
 
     private int roomNumber;
     private int capacity;
+    private int rate;
     private String type;
     private ArrayList<Guest> guests;
 
@@ -12,6 +13,7 @@ public class Bedroom {
         this.capacity = capacity;
         this.type = type;
         this.guests = new ArrayList<Guest>();
+        this.rate = this.initialRate();
     }
 
     public int countGuests() {
@@ -30,8 +32,14 @@ public class Bedroom {
         return this.type;
     }
 
+    public int getRate() {
+        return this.rate;
+    }
+
     public void addGuest(Guest guest) {
-        this.guests.add(guest);
+        if (this.hasCapacity()) {
+            this.guests.add(guest);
+        }
     }
 
     public Guest removeGuest(Guest guest) {
@@ -40,5 +48,19 @@ public class Bedroom {
             return guest;
         }
         return null;
+    }
+
+    public boolean hasCapacity() {
+        return this.guests.size() < this.capacity;
+    }
+
+    public int initialRate() {
+        if (this.type.equals("Single")) {
+            return 20;
+        } else if (this.type.equals("Double")){
+            return 40;
+        } else {
+            return 60;
+        }
     }
 }

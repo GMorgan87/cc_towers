@@ -24,10 +24,9 @@ public class ConferenceRoom {
     }
 
     public void addGuest(Guest guest) {
-        if(this.capacity > this.countGuests()){
+        if (this.hasCapacity()) {
             this.guests.add(guest);
         }
-
     }
 
     public Guest removeGuest(Guest guest) {
@@ -36,5 +35,9 @@ public class ConferenceRoom {
             return guest;
         }
         return null;
+    }
+
+    public boolean hasCapacity() {
+        return this.guests.size() < this.capacity;
     }
 }

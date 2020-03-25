@@ -7,11 +7,15 @@ public class ConferenceRoomTest {
 
     private ConferenceRoom confRoom;
     private Guest guest;
+    private Guest guest2;
+    private Guest guest3;
 
     @Before
     public void before(){
         confRoom = new ConferenceRoom("Zsolt", 2);
         guest = new Guest("GG");
+        guest2 = new Guest("Gareth");
+        guest3 = new Guest("Fraser");
     }
 
     @Test
@@ -47,5 +51,13 @@ public class ConferenceRoomTest {
     public void cantRemoveGuestIfNotThere() {
         Guest removedGuest = confRoom.removeGuest(guest);
         assertEquals(null, removedGuest);
+    }
+
+    @Test
+    public void cantAddGuestIfFull() {
+        confRoom.addGuest(guest);
+        confRoom.addGuest(guest2);
+        confRoom.addGuest(guest3);
+        assertEquals(2, confRoom.countGuests());
     }
 }

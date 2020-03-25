@@ -7,11 +7,15 @@ public class BedroomTest {
 
     private Bedroom bedroom;
     private Guest guest;
+    private Guest guest2;
+    private Guest guest3;
 
     @Before
     public void before(){
-        bedroom = new Bedroom(5, 2, "double");
+        bedroom = new Bedroom(5, 2, "Double");
         guest = new Guest("GG");
+        guest2 = new Guest("Gareth");
+        guest3 = new Guest("Fraser");
     }
 
     @Test
@@ -31,7 +35,11 @@ public class BedroomTest {
 
     @Test
     public void hasType() {
-        assertEquals("double", bedroom.getType());
+        assertEquals("Double", bedroom.getType());
+    }
+
+    @Test
+    public void hasRate() {assertEquals(40, bedroom.getRate());
     }
 
     @Test
@@ -51,5 +59,13 @@ public class BedroomTest {
     public void cantRemoveGuestIfNotThere() {
         Guest removedGuest = bedroom.removeGuest(guest);
         assertEquals(null, removedGuest);
+    }
+
+    @Test
+    public void cantAddGuestIfFull() {
+        bedroom.addGuest(guest);
+        bedroom.addGuest(guest2);
+        bedroom.addGuest(guest3);
+        assertEquals(2, bedroom.countGuests());
     }
 }
