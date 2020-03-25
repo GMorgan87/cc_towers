@@ -1,14 +1,17 @@
-import java.awt.print.Book;
+
 import java.util.ArrayList;
 
 public class Hotel {
 
     private ArrayList<Bedroom> bedrooms;
     private ArrayList<ConferenceRoom> confRooms;
+    private ArrayList<Bedroom> emptyRooms;
+
 
     public Hotel(ArrayList<Bedroom> bedrooms, ArrayList<ConferenceRoom> confRooms){
         this.bedrooms= bedrooms;
         this.confRooms= confRooms;
+        this.emptyRooms = new ArrayList<Bedroom>();
     }
 
     public int countBedrooms() {
@@ -33,5 +36,19 @@ public class Hotel {
 
     public Booking bookRoom(Bedroom bedroom, int nights) {
         return new Booking(bedroom, nights);
+    }
+
+    public void addEmptyRoom(Bedroom bedroom){
+        if (bedroom.isEmpty()) {
+            this.emptyRooms.add(bedroom);
+        }
+    }
+
+    public ArrayList<Bedroom> getEmptyRooms(){
+        for (Bedroom bedroom : this.bedrooms)
+            if (bedroom.isEmpty()){
+                addEmptyRoom(bedroom);
+            }
+        return this.emptyRooms;
     }
 }

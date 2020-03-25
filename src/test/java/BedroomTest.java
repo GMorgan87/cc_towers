@@ -46,6 +46,7 @@ public class BedroomTest {
     public void canAddGuest() {
         bedroom.addGuest(guest);
         assertEquals(1, bedroom.countGuests());
+        assertEquals(false, bedroom.isEmpty());
     }
 
     @Test
@@ -62,10 +63,9 @@ public class BedroomTest {
     }
 
     @Test
-    public void cantAddGuestIfFull() {
+    public void cantAddGuestIfOccupied() {
         bedroom.addGuest(guest);
         bedroom.addGuest(guest2);
-        bedroom.addGuest(guest3);
-        assertEquals(2, bedroom.countGuests());
+        assertEquals(1, bedroom.countGuests());
     }
 }

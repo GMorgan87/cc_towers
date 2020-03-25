@@ -37,7 +37,7 @@ public class Bedroom {
     }
 
     public void addGuest(Guest guest) {
-        if (this.hasCapacity()) {
+        if (this.isEmpty()) {
             this.guests.add(guest);
         }
     }
@@ -50,8 +50,8 @@ public class Bedroom {
         return null;
     }
 
-    public boolean hasCapacity() {
-        return this.guests.size() < this.capacity;
+    public boolean isEmpty() {
+        return this.guests.size() == 0;
     }
 
     public int initialRate() {
